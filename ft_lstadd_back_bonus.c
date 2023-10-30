@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnakchum <nnakchum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 21:45:16 by nnakchum          #+#    #+#             */
-/*   Updated: 2023/10/30 19:56:17 by nnakchum         ###   ########.fr       */
+/*   Created: 2023/09/24 19:21:42 by nnakchum          #+#    #+#             */
+/*   Updated: 2023/10/30 20:04:01 by nnakchum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	size_t	sl;
-	char	*sub;
+	t_list	*node;
 
-	if (!s)
-		return (NULL);
-	sl = ft_strlen(s);
-	if (start > sl)
+	if (!new)
+		return ;
+	node = *lst;
+	if (node)
 	{
-		start = sl;
-		len = 0;
+		while (node->next)
+			node = node->next;
+		node->next = new;
 	}
-	else if (len >= sl - start)
-		len = sl - start;
-	sub = malloc(sizeof(char) * (len + 1));
-	if (!sub)
-		return (NULL);
-	ft_strlcpy(sub, s + start, len + 1);
-	return (sub);
+	else
+		*lst = new;
 }

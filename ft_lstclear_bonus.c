@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnakchum <nnakchum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 21:45:16 by nnakchum          #+#    #+#             */
-/*   Updated: 2023/10/30 19:56:17 by nnakchum         ###   ########.fr       */
+/*   Created: 2023/09/24 19:21:42 by nnakchum          #+#    #+#             */
+/*   Updated: 2023/10/28 23:07:28 by nnakchum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	size_t	sl;
-	char	*sub;
+	t_list	*current;
+	t_list	*next;
 
-	if (!s)
-		return (NULL);
-	sl = ft_strlen(s);
-	if (start > sl)
+	if (!lst || !del)
+		return ;
+	current = *lst;
+	while (current)
 	{
-		start = sl;
-		len = 0;
+		next = current->next;
+		del(current->content);
+		free(current);
+		current = next;
 	}
-	else if (len >= sl - start)
-		len = sl - start;
-	sub = malloc(sizeof(char) * (len + 1));
-	if (!sub)
-		return (NULL);
-	ft_strlcpy(sub, s + start, len + 1);
-	return (sub);
+	*lst = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: nnakchum <nnakchum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 21:13:57 by nnakchum          #+#    #+#             */
-/*   Updated: 2023/10/24 23:15:58 by nnakchum         ###   ########.fr       */
+/*   Updated: 2023/10/30 19:56:35 by nnakchum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strdup(const char *s1)
 	while (s1[i])
 	{
 		s2[i] = s1[i];
-		++i;
+		i++;
 	}
 	s2[i] = '\0';
 	return (s2);

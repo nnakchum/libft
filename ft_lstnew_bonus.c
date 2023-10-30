@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnakchum <nnakchum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 21:45:16 by nnakchum          #+#    #+#             */
-/*   Updated: 2023/10/30 19:56:17 by nnakchum         ###   ########.fr       */
+/*   Created: 2023/09/24 19:21:42 by nnakchum          #+#    #+#             */
+/*   Updated: 2023/10/28 19:36:05 by nnakchum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	sl;
-	char	*sub;
+	t_list	*new;
 
-	if (!s)
+	new = (t_list *) malloc (sizeof(t_list));
+	if (!new)
 		return (NULL);
-	sl = ft_strlen(s);
-	if (start > sl)
-	{
-		start = sl;
-		len = 0;
-	}
-	else if (len >= sl - start)
-		len = sl - start;
-	sub = malloc(sizeof(char) * (len + 1));
-	if (!sub)
-		return (NULL);
-	ft_strlcpy(sub, s + start, len + 1);
-	return (sub);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }
